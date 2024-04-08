@@ -2,6 +2,7 @@ import numpy
 
 from back.state import State
 from back.nuclei import Nuclei
+from back.graf.graph import Graph
 from back.ensdf.informator import Informator
 
 
