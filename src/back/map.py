@@ -1,9 +1,8 @@
 import numpy
 
-from back.state import State
-from back.nuclei import Nuclei
 from back.graf.graph import Graph
-from back.ensdf.informator import Informator
+from back.physics.state import State
+from back.physics.nuclei import Nuclei
 
 
 class Map:

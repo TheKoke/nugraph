@@ -1,3 +1,4 @@
+from back.physics.state import State
 from back.ensdf.parser import NAME2CHARGE, CHARGE2NAME
 
 
@@ -11,11 +12,15 @@ class Informator:
         pass
 
     @staticmethod
-    def states(z: int, a: int) -> list[float]:
+    def states(z: int, a: int) -> list[State]:
         pass
 
     @staticmethod
-    def discharges(z: int, a: int) -> list[tuple[float, float]]:
+    def discharges(z: int, a: int) -> list[tuple[State, State]]:
+        pass
+
+    @staticmethod
+    def energy_levels(z: int, a: int) -> list[float]:
         pass
 
     @staticmethod
