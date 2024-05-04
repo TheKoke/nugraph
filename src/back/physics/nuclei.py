@@ -11,6 +11,7 @@ class Nuclei:
         
         self._z = z
         self._a = a
+        self._delta_m = Informator.mass_excees(z, a)
         self._name = Informator.name_of(z, a)
         self._states = Informator.states(z, a)
         self._discharges = Informator.discharges(z, a)
@@ -28,8 +29,24 @@ class Nuclei:
         return self._name
     
     @property
+    def mass_excees(self) -> float:
+        return self._delta_m
+    
+    @property
     def states(self) -> list[State]:
         return self._states.copy()
+    
+    @property
+    def discharges(self) -> list[tuple[State, State]]:
+        return self._discharges.copy()
+    
+    @property
+    def mass(self) -> float:
+        pass
+    
+    @property
+    def radius(self) -> float:
+        pass
     
     def __str__(self) -> str:
         return f'{self._a}{self._name}'

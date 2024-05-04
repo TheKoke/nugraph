@@ -40,7 +40,7 @@ class State:
         self._parity = parity
 
     def __str__(self) -> str:
-        pass
+        return f'State({self._spin}{self._parity}, {round(self._energy, 3)} MeV)'
 
     def __repr__(self) -> str:
         return str(self)

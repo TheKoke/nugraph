@@ -18,7 +18,7 @@ class Node[T]:
         return hash(str(self))
     
     def __str__(self) -> str:
-        pass
+        return f'Node(val={self._val})'
 
     def __eq__(self, value: object) -> bool:
         if isinstance(value, Node[T]):

@@ -3,12 +3,17 @@ from back.ensdf.parser import NAME2CHARGE, CHARGE2NAME
 
 
 class Informator:
+
+    @staticmethod
+    def is_exist(z: int, a: int) -> bool:
+        pass
+
     @staticmethod
     def name_of(z: int, a: int) -> str:
         pass
 
     @staticmethod
-    def is_exist(z: int, a: int) -> bool:
+    def mass_excees(z: int, a: int) -> float:
         pass
 
     @staticmethod
