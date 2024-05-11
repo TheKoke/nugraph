@@ -25,18 +25,26 @@ class Graph[T]:
 
 class GraphBuilder[T]:
     def __init__(self) -> None:
-        self._nodes = list()
-        self._edges = list()
+        self._nodes: list[Node] = list()
+        self._edges: list[Edge] = list()
         self._adjacent = list(list())
 
     def __call__(self) -> Graph:
         return Graph(self._nodes, self._edges, self._adjacent)
     
-    def add_node(self) -> bool:
-        pass
+    def add_node(self, pretend: Node[T]) -> bool:
+        if not isinstance(pretend.val, T):
+            return False
+        
+        self._nodes.append(pretend)
+        return True
 
-    def add_edge(self, index1: int, index2: int) -> bool:
-        pass
+    def add_edge(self, origin: int, destination: int) -> bool:
+        if origin < 0 or origin >= len(self._nodes) or destination < 0 and destination >= len(self._nodes):
+            return False
+        
+        self._nodes[origin].add_neighbor(self._nodes[destination])
+        return False
     
 
 if __name__ == '__main__':
