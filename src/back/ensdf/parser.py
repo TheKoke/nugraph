@@ -54,23 +54,42 @@ class ENSDFParser:
 
     @staticmethod
     def is_exist(z: int, a: int) -> bool:
-        pass
+        try:
+            mass_excess = ENSDFParser.mass_excees(z, a)
+            return True
+        except:
+            return False
 
     @staticmethod
     def mass_excees(z: int, a: int) -> float:
-        pass
+        file = ENSDFParser.find_file(z)
+        name = f'{a}{CHARGE2NAME[z]}' 
 
     @staticmethod
     def states(z: int, a: int) -> tuple[float, list[float], list[bool]]:
-        pass
+        file = ENSDFParser.find_file(z)
+        name = f'{a}{CHARGE2NAME[z]}'
 
     @staticmethod
     def discharges(z: int, a: int) -> list[tuple[float, float]]:
-        pass
+        file = ENSDFParser.find_file(z)
+        name = f'{a}{CHARGE2NAME[z]}'
     
     @staticmethod
     def find_file(z: int) -> str:
-        pass
+        directory = 'ensdf'
+
+        directories = os.listdir()
+        if directory not in directories:
+            raise RuntimeError('No downloaded datas from ESNDF.')
+        
+        name = f'{z}{CHARGE2NAME[z]}.txt'
+
+        files = os.listdir()
+        if name not in files:
+            raise RuntimeError(f'No downloaded ENSDF files for z={z}')
+        
+        return directory + '/' + name
 
 
 if __name__ == '__main__':

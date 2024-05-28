@@ -46,6 +46,12 @@ class GraphBuilder[T]:
         self._nodes[origin].add_neighbor(self._nodes[destination])
         return False
     
+    def delete_node(self, pretend: int) -> bool:
+        pass
+
+    def delete_edge(self, origin: int, destination: int) -> bool:
+        pass
+    
 
 if __name__ == '__main__':
     pass

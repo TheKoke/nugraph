@@ -34,6 +34,9 @@ class Node[T]:
         self._neighrs.append(pretend)
         return True
     
+    def delete_neighbor(self, neighbor: Node) -> bool:
+        pass
+    
 
 if __name__ == '__main__':
     pass

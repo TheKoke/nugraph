@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy
 
 from back.physics.state import State
@@ -42,11 +44,14 @@ class Nuclei:
     
     @property
     def mass(self) -> float:
-        pass
+        proton = 938.27  # MeV
+        neutron = 939.57 # MeV
+        return proton * self._z + neutron * (self._a - self._z)
     
     @property
     def radius(self) -> float:
-        pass
+        fermi = 1.28 # fm
+        return fermi * numpy.cbrt(self._a)
     
     def __str__(self) -> str:
         return f'{self._a}{self._name}'
@@ -56,6 +61,30 @@ class Nuclei:
     
     def __hash__(self) -> int:
         return hash(str(self))
+    
+    def __eq__(self, other: Nuclei) -> bool:
+        if not isinstance(other, Nuclei):
+            return False
+        
+        return self._z == other.charge and self._a == other.nuclons
+    
+    def __add__(self, other: Nuclei) -> Nuclei:
+        if not isinstance(other, Nuclei):
+            raise RuntimeError(f'Cannot apply "+" opearator to instance of Nuclei and {other.__class__}.')
+        
+        return Nuclei(self._z + other.charge, self._a + other.nuclons)
+    
+    def __sub__(self, other: Nuclei) -> Nuclei:
+        if not isinstance(other, Nuclei):
+            raise RuntimeError(f'Cannot apply "-" opearator to instance of Nuclei and {other.__class__}.')
+        
+        if other.charge >= self._z or other.nuclons >= self._a:
+            raise RuntimeError(f'Cannot subtract nuclei from nuclei with same nucleons and charge.')
+        
+        return Nuclei(self._z - other.charge, self._a - other.nuclons)
+    
+    def interaction_radius(self) -> float:
+        pass
 
 
 if __name__ == '__main__':
