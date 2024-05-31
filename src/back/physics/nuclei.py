@@ -83,8 +83,12 @@ class Nuclei:
         
         return Nuclei(self._z - other.charge, self._a - other.nuclons)
     
-    def interaction_radius(self) -> float:
-        pass
+    def sharp_radius(self) -> float:
+        return 1.28 * numpy.cbrt(self._a) - 0.76 + 0.8 * numpy.cbrt(1 / (self._a)) # fm
+    
+    def central_radius(self) -> float:
+        sharp_radii = self.sharp_radius()
+        return sharp_radii * (1 - (1 / sharp_radii) ** 2)
 
 
 if __name__ == '__main__':
