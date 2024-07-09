@@ -1,7 +1,6 @@
-import numpy
-from enum import Enum
+from __future__ import annotations
 
-from informator import Informator
+from enum import Enum
 
 
 class DecayType(Enum):
@@ -42,12 +41,19 @@ class Decay:
             case DecayType.ISOMERIC_TRANSITION:
                 return z, a
             case DecayType.SPONTANEOUS_FISSION:
-                return None # more insormation needed.
+                return None # more information is needed.
             case DecayType.CLUSTER_DECAY:
-                return None # more information needed.
+                return None # more information is needed.
             
-    def q_of_decay(self, z: int, a: int) -> float:
-        return Informator.mass_excees(z, a) - Informator.mass_excees(*self(z, a))
+    def __str__(self) -> str:
+        pass
+
+    def __repr__(self) -> str:
+        return str(self)
+    
+    @staticmethod
+    def from_string(string: str) -> Decay:
+        pass
 
 
 if __name__ == '__main__':

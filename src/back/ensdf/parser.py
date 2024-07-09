@@ -63,10 +63,10 @@ class ENSDFParser:
     @staticmethod
     def mass_excees(z: int, a: int) -> float:
         file = ENSDFParser.find_file(z)
-        name = f'{a}{CHARGE2NAME[z]}' 
+        name = f'{a}{CHARGE2NAME[z]}'
 
     @staticmethod
-    def states(z: int, a: int) -> tuple[float, list[float], list[bool]]:
+    def states(z: int, a: int) -> list[tuple[float, list[float], list[bool], list[str], float]]:
         file = ENSDFParser.find_file(z)
         name = f'{a}{CHARGE2NAME[z]}'
 

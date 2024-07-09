@@ -4,6 +4,7 @@ import numpy
 
 from back.physics.state import State
 from back.informator import Informator
+from back.physics.decay import DecayType
 
 
 class Nuclei:
@@ -29,6 +30,16 @@ class Nuclei:
     @property
     def name(self) -> int:
         return self._name
+    
+    @property
+    def is_stable(self) -> bool:
+        ground_state = self._states[0]
+        return DecayType.STABLE in ground_state.decays
+    
+    @property
+    def halflife(self) -> float:
+        ground_state = self._states[0]
+        return ground_state.halflife
     
     @property
     def mass_excees(self) -> float:

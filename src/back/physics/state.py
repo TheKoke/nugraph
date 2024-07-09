@@ -1,5 +1,7 @@
 import numpy
 
+from back.physics.decay import Decay
+
 
 class Parity:
     def __init__(self, parity: bool) -> None:
@@ -34,13 +36,15 @@ class Spin:
 
 
 class State:
-    def __init__(self, energy: float, spin: list[Spin], parity: list[Parity]) -> None:
+    def __init__(self, energy: float, spin: list[Spin], parity: list[Parity], decays: list[Decay], halflife: float) -> None:
         self._energy = energy
         self._spin = spin
         self._parity = parity
+        self._decays = decays
+        self._halflife = halflife
 
     def __str__(self) -> str:
-        return f'State({self._spin}{self._parity}, {round(self._energy, 3)} MeV)'
+        return f'State({self._spin}{self._parity}, {round(self._energy, 3)} MeV, decays: {str(self._decays)})'
 
     def __repr__(self) -> str:
         return str(self)
@@ -56,6 +60,14 @@ class State:
     @property
     def parity(self) -> list[Parity]:
         return self._parity
+    
+    @property
+    def decays(self) -> list[Decay]:
+        return self._decays
+    
+    @property
+    def halflife(self) -> float:
+        return self._halflife
     
     @property
     def is_excited_state(self) -> bool:

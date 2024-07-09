@@ -1,3 +1,4 @@
+from back.physics.decay import Decay
 from back.physics.state import State
 from back.ensdf.parser import NAME2CHARGE, CHARGE2NAME, ENSDFParser
 
@@ -21,7 +22,19 @@ class Informator:
     @staticmethod
     def states(z: int, a: int) -> list[State]:
         if Informator.is_exist(z, a):
-            return [State(energy, spins, parities) for energy, spins, parities in Informator.states(z, a)]
+            collected_states = ENSDFParser.states(z, a)
+
+            states = []
+            for i in range(collected_states):
+                energy = collected_states[0]
+                spins = collected_states[1]
+                parities = collected_states[2]
+                decays = [Decay.from_string(string) for string in collected_states[3]]
+                halflife = collected_states[4]
+
+                states.append(State(energy, spins, parities, decays, halflife))
+
+            return states
 
     @staticmethod
     def discharges(z: int, a: int) -> list[tuple[State, State]]:
