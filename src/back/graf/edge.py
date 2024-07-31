@@ -3,7 +3,7 @@ from back.graf.node import Node
 
 
 class Edge[T]:
-    def __init__(self, _from: Node[T], _to: Node[T], w: float = 1.0) -> None:
+    def __init__(self, _from: Node[T], _to: Node[T], w: float = 1.0, is_oriented: bool = False) -> None:
         self._from = _from
         self._to = _to
         self._w = w
@@ -21,17 +21,16 @@ class Edge[T]:
         return self._w
     
     @staticmethod
-    def create_edge[NT](_from: Node[NT], _to: Node[NT], 
-                        weight: float = 1.0, oriented: bool = False) -> Edge[NT] | tuple[Edge[NT], Edge[NT]]:
+    def create_edge[NT](_from: Node[NT], _to: Node[NT], weight: float = 1.0, oriented: bool = False) -> Edge[NT]:
         if oriented:
-            _from.add_neighbor(_to)
-            return Edge(_from, _to, weight)
+            success = _from.add_neighbor(_to)
+        else:
+            success = _from.add_neighbor(_to) and _to.add_neighbor(_from)
+            
+        if not success:
+            return None
 
-        first_edge = Edge(_from, _to, weight)
-        second_edge = Edge(_to, _from, weight)
-
-        success = _from.add_neighbor(_to) and _to.add_neighbor(_from)
-        return (first_edge, second_edge)
+        return Edge(_from, _to, weight, oriented)
     
 
 if __name__ == '__main__':

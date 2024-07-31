@@ -11,7 +11,7 @@ class Node[T]:
         return self._val
     
     @property
-    def neighrs(self) -> T:
+    def neighrs(self) -> list[Node[T]]:
         return self.neighrs[:]
     
     def __hash__(self) -> int:
@@ -35,7 +35,14 @@ class Node[T]:
         return True
     
     def delete_neighbor(self, neighbor: Node) -> bool:
-        pass
+        if not isinstance(neighbor.val, T):
+            return False
+        
+        if neighbor not in self._neighrs:
+            return False
+        
+        self._neighrs.pop(self._neighrs.index(neighbor))
+        return True
     
 
 if __name__ == '__main__':

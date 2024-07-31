@@ -1,6 +1,7 @@
 import numpy
 
 from back.physics.decay import Decay
+from back.physics.halflife import HalfLife
 
 
 class Parity:
@@ -36,7 +37,7 @@ class Spin:
 
 
 class State:
-    def __init__(self, energy: float, spin: list[Spin], parity: list[Parity], decays: list[Decay], halflife: float) -> None:
+    def __init__(self, energy: float, spin: list[Spin], parity: list[Parity], decays: list[Decay], halflife: HalfLife) -> None:
         self._energy = energy
         self._spin = spin
         self._parity = parity
@@ -66,7 +67,7 @@ class State:
         return self._decays
     
     @property
-    def halflife(self) -> float:
+    def halflife(self) -> HalfLife:
         return self._halflife
     
     @property
