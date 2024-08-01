@@ -46,7 +46,27 @@ class Decay:
                 return None # more information is needed.
             
     def __str__(self) -> str:
-        pass
+        match self._type:
+            case DecayType.STABLE:
+                return 'Stable'
+            case DecayType.ALPHA:
+                return 'Alpha'
+            case DecayType.BETHA_MINUS:
+                return 'Beta-'
+            case DecayType.BETHA_PLUS:
+                return 'Beta+'
+            case DecayType.ELECTRON_CAPTURE:
+                return 'EC'
+            case DecayType.PROTON:
+                return 'proton'
+            case DecayType.NEUTRON:
+                return 'neutron'
+            case DecayType.ISOMERIC_TRANSITION:
+                return 'IT'
+            case DecayType.SPONTANEOUS_FISSION:
+                return 'SF'
+            case DecayType.CLUSTER_DECAY:
+                return 'Cluster'
 
     def __repr__(self) -> str:
         return str(self)

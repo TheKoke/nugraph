@@ -45,7 +45,8 @@ class State:
         self._halflife = halflife
 
     def __str__(self) -> str:
-        return f'State({self._spin}{self._parity}, {round(self._energy, 3)} MeV, decays: {str(self._decays)})'
+        return f'State({round(self._energy, 3)}, {self._spin}{self._parity} MeV' + \
+               f'decays: {self._decays}, halflife: {self._halflife})'
 
     def __repr__(self) -> str:
         return str(self)

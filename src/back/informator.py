@@ -1,5 +1,6 @@
 from back.physics.decay import Decay
 from back.physics.state import State
+from back.physics.halflife import HalfLife
 from back.ensdf.parser import NAME2CHARGE, CHARGE2NAME, ENSDFParser
 
 
@@ -26,11 +27,11 @@ class Informator:
 
             states = []
             for i in range(collected_states):
-                energy = collected_states[0]
-                spins = collected_states[1]
-                parities = collected_states[2]
+                energy = collected_states[i][0]
+                spins = collected_states[i][1]
+                parities = collected_states[i][2]
                 decays = [Decay.from_string(string) for string in collected_states[3]]
-                halflife = collected_states[4]
+                halflife = HalfLife(collected_states[i][4])
 
                 states.append(State(energy, spins, parities, decays, halflife))
 

@@ -1,6 +1,3 @@
-import numpy
-
-
 class HalfLife:
     def __init__(self, value: float, in_eV: bool = False) -> None:
         if in_eV:
@@ -12,11 +9,21 @@ class HalfLife:
 
     @staticmethod
     def from_time(time: float) -> float:
-        pass
+        reduced_planck = 6.58e-16 # eV * s
+        return reduced_planck / time
 
     @staticmethod
     def from_energy(energy: float) -> float:
-        pass
+        reduced_planck = 6.58e-16 # eV * s
+        return reduced_planck / energy
+    
+    @property
+    def time(self) -> float:
+        return self._time
+    
+    @property
+    def energy(self) -> float:
+        return self._energy
 
 
 if __name__ == '__main__':

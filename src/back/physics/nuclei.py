@@ -5,6 +5,7 @@ import numpy
 from back.physics.state import State
 from back.informator import Informator
 from back.physics.decay import DecayType
+from back.physics.halflife import HalfLife
 
 
 class Nuclei:
@@ -37,7 +38,7 @@ class Nuclei:
         return DecayType.STABLE in ground_state.decays
     
     @property
-    def halflife(self) -> float:
+    def halflife(self) -> HalfLife:
         ground_state = self._states[0]
         return ground_state.halflife
     
